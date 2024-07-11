@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Password Manager Dashboard</h1>
+                <div class="header-buttons">
+                    <button id="btn-settings" class="btn btn-settings">Settings</button>
+                    <button id="btn-logout" class="btn btn-logout">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="dashboard">
+            <section class="card">
+                <h2>Stored Passwords</h2>
+                <ul class="password-list">
+                    <li>Email Account</li>
+                    <li>Social Media</li>
+                    <li>Banking</li>
+                    <li>Shopping</li>
+                </ul>
+                <a href="#" class="btn">Add New Password</a>
+            </section>
+            <section class="card">
+                <h2>Security Status</h2>
+                <p>Your password strength: <strong>Good</strong></p>
+                <p>Last password update: <strong>7 days ago</strong></p>
+                <a href="#" class="btn">Run Security Check</a>
+            </section>
+            <section class="card">
+                <h2>Quick Actions</h2>
+                <a href="#" class="btn">Generate Strong Password</a>
+                <a href="#" class="btn">Export Passwords</a>
+                <a href="#" class="btn">Account Settings</a>
+            </section>
+        </div>
+    </main>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
