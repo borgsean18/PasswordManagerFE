@@ -1,0 +1,16 @@
+.backButton {
+  transition: transform 0.3s ease-in-out;
+}
+
+.backButton:hover {
+  animation: bounceHorizontal 0.5s ease infinite;
+}
+
+@keyframes bounceHorizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+}
