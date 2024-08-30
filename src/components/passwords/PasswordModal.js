@@ -21,8 +21,27 @@ function PasswordModal({ password, onClose, onSave, groups }) {
   };
 
   const generatePassword = () => {
-    // Implement password generation logic here
-    const newPassword = "generatedPassword123!"; // Replace with actual generation
+    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    const allChars = lowercase + uppercase + numbers + symbols;
+    
+    let newPassword = '';
+    const length = 12; // Maximum length
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * allChars.length);
+      newPassword += allChars[randomIndex];
+    }
+
+    // Ensure at least one lowercase, one uppercase, one number, and one symbol
+    newPassword = newPassword
+      .replace(/[a-z]/, lowercase[Math.floor(Math.random() * lowercase.length)])
+      .replace(/[A-Z]/, uppercase[Math.floor(Math.random() * uppercase.length)])
+      .replace(/[0-9]/, numbers[Math.floor(Math.random() * numbers.length)])
+      .replace(/[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]/, symbols[Math.floor(Math.random() * symbols.length)]);
+
     setEditedPassword(prev => ({ ...prev, password: newPassword }));
   };
 
