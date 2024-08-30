@@ -1,7 +1,7 @@
-import BackButton from '@/components/BackButton';
+import { BackButton } from '@/components/buttons';
 import AuthForm from '@/components/AuthForm';
 
-export default function Login() {
+function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <BackButton />
@@ -12,3 +12,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

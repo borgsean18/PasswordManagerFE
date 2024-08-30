@@ -5,7 +5,7 @@ import Link from 'next/link';
 // import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-export default function AuthForm({ type }) {
+function AuthForm({ type }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
@@ -89,3 +89,5 @@ export default function AuthForm({ type }) {
     </form>
   );
 }
+
+export default AuthForm;

@@ -1,14 +1,23 @@
-import BackButton from '@/components/BackButton';
+import { BackButton } from '@/components/buttons';
 import AuthForm from '@/components/AuthForm';
+// import ReCAPTCHA from "react-google-recaptcha";
 
-export default function Register() {
+function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <BackButton />
       <div className="bg-zinc-900 p-8 rounded-lg shadow-md w-full max-w-md border-2 border-zinc-600">
         <h1 className="text-2xl font-bold mb-6 text-center text-white">Register</h1>
         <AuthForm type="register" />
+        {/* <div className="mt-4 flex justify-center">
+          <ReCAPTCHA
+            sitekey="YOUR_RECAPTCHA_SITE_KEY"
+            theme="dark"
+          />
+        </div> */}
       </div>
     </div>
   );
 }
+
+export default Register;
