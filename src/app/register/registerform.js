@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -10,6 +13,8 @@ function RegisterForm() {
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -18,8 +23,10 @@ function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setLoading(true);
     
-    const apiUrl = '/api/register';
+    const apiUrl = `${backendURL}/api/auth/register`;
 
     try {
       const response = await fetch(apiUrl, {
@@ -30,18 +37,31 @@ function RegisterForm() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+      
       if (response.ok) {
+        // Save email and token to cookies
+        Cookies.set('userEmail', formData.email, { expires: 7 });
+        Cookies.set('authToken', data.token, { expires: 7 });
         router.push('/dashboard');
       } else {
-        console.error('Registration failed');
+        setError(data.message || 'Registration failed. Please try again.');
       }
     } catch (error) {
+      setError('Error connecting to server. Please try again later.');
       console.error('Error during registration:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && (
+        <div className="mb-4 p-3 bg-red-500 bg-opacity-25 border border-red-500 rounded text-red-100">
+          {error}
+        </div>
+      )}
       <div className="mb-4">
         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-300">Name</label>
         <input
@@ -75,8 +95,12 @@ function RegisterForm() {
           required
         />
       </div>
-      <button type="submit" className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300 mb-4">
-        Register
+      <button 
+        type="submit" 
+        className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300 mb-4 flex justify-center"
+        disabled={loading}
+      >
+        {loading ? 'Registering...' : 'Register'}
       </button>
       
       <Link href="/login" className="block w-full text-center bg-zinc-700 text-white py-2 px-4 rounded-md hover:bg-zinc-600 focus:outline-none focus:ring focus:border-zinc-500">

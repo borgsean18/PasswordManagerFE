@@ -6,7 +6,7 @@ import StatisticsCard from '@/components/StatisticsCard';
 
 import { FaUser, FaShieldAlt, FaExclamationTriangle, FaFolder } from 'react-icons/fa';
 
-function DashboardPage() {
+function Dashboard() {
   return (
     <div className="bg-black">
       <Header />
@@ -23,4 +23,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default Dashboard;
