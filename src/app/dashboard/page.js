@@ -3,10 +3,10 @@
 import Header from '@/components/Header';
 import PasswordsTable from '@/components/passwords/PasswordsTable';
 import StatisticsCard from '@/components/StatisticsCard';
-
+import AuthGuard from '@/components/AuthGuard';
 import { FaUser, FaShieldAlt, FaExclamationTriangle, FaFolder } from 'react-icons/fa';
 
-function Dashboard() {
+function DashboardContent() {
   return (
     <div className="bg-black">
       <Header />
@@ -20,6 +20,14 @@ function Dashboard() {
         <PasswordsTable />
       </div>
     </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <AuthGuard>
+      <DashboardContent />
+    </AuthGuard>
   );
 }
 
